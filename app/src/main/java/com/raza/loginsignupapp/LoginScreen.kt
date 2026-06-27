@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,9 +16,18 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -34,6 +44,8 @@ fun LoginScreen() {
 
     val darkBlue = Color(color = 0xFF0B2545)
     val lightBlue = Color(color = 0xFF3F72AF)
+    var emailAddress by remember{ mutableStateOf(value = "") }
+    var password by remember{ mutableStateOf(value = "") }
     Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
         Image(
             painter = painterResource(id = R.drawable.students),
@@ -74,16 +86,57 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(height = 90.dp) )
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
                     .padding(all = 24.dp)
             ) {
-                Text(text = "Email Address",
-                color = Color.Gray,
-                    )
                 TextField(
-                    value = "",
-                    onValueChange = { }
+                    value = emailAddress,
+                    onValueChange = { emailAddress = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text("Email Address") },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        focusedIndicatorColor = lightBlue,
+                        unfocusedIndicatorColor = Color.Gray,
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Gray,
+                        cursorColor = lightBlue,
+                        focusedLabelColor = lightBlue,
+                        unfocusedLabelColor = Color.Gray
+                    ),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    ),
+                    singleLine = true
                 )
+                Spacer(modifier = Modifier.height(height = 16.dp))
+                TextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    label = { Text("Password") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedContainerColor = Color.Transparent,
+                        focusedIndicatorColor = lightBlue,
+                        unfocusedIndicatorColor = Color.Gray,
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Gray,
+                        cursorColor = lightBlue,
+                        focusedLabelColor = lightBlue,
+                        unfocusedLabelColor = Color.Gray
+                    ),
+                    textStyle = LocalTextStyle.current.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    ),
+                    singleLine = true
+                )
+               
             }
         }
     }
