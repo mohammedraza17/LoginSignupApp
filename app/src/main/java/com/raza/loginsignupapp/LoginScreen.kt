@@ -70,12 +70,12 @@ fun LoginScreen() {
                     .border(width = 4.dp, color = Color.White, shape = CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-               Icon(
-                   imageVector = Icons.Default.Menu,
-                   contentDescription = "Logo",
-                   tint = Color.White,
-                   modifier = Modifier.size(size = 90.dp).rotate(degrees = -30f)
-               )
+                Icon(
+                    imageVector = Icons.Default.Menu,
+                    contentDescription = "Logo",
+                    tint = Color.White,
+                    modifier = Modifier.size(size = 90.dp).rotate(degrees = -30f)
+                )
             }
             Spacer(modifier = Modifier.height(height = 16.dp) )
             Text(
@@ -136,7 +136,7 @@ fun LoginScreen() {
                     ),
                     singleLine = true
                 )
-               
+
             }
         }
     }
